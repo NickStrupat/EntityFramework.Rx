@@ -13,7 +13,6 @@ using EntityFramework.Triggers;
 namespace Example {
 	class Program {
 		static void Main(String[] args) {
-			ObservableEntity.RegisterDbContextFactory(() => new Context());
 			var observerThread = new Thread(ObserveNewPeople);
 			observerThread.Start();
 			Thread.Sleep(100);
@@ -30,9 +29,10 @@ namespace Example {
 
 		private static void ObserveNewPeople() {
 			Console.WriteLine("thread");
-			var o = ObservableEntity.FromInserting<Person>();
+			//var a = DbObservable<Context>.FromInserted<Foo>();
+			var o = DbObservable<Context>.FromInserted<Person>();
 			using (var p = o.Where(x => x.Entity.DateOfBirth.Month == DateTime.Today.Month && x.Entity.DateOfBirth.Day == DateTime.Today.Day).Subscribe(entry => Console.WriteLine($"Happy birthday to {entry.Entity.Name}!"))) {
-				Thread.Sleep(100000);
+				Thread.Sleep(5000);
 			}
 		}
 	}
@@ -46,5 +46,10 @@ namespace Example {
 		public String Name { get; set; }
 		[DataType(DataType.Date)]
 		public DateTime DateOfBirth { get; set; }
+	}
+
+	public class Foo : ITriggerable {
+		public Int64 Id { get; private set; }
+		public String Bar { get; set; }
 	}
 }

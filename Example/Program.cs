@@ -20,7 +20,7 @@ namespace Example {
 				Console.WriteLine("context");
 				context.People.Add(new Person { Name = "Nick", DateOfBirth = new DateTime(1986, 7, 17) });
 				context.SaveChanges();
-				context.People.Add(new Person { Name = "Joe", DateOfBirth = new DateTime(1986, 9, 11) });
+				context.People.Add(new Person { Name = "Joe", DateOfBirth = DateTime.Today });
 				context.SaveChanges();
 				Console.WriteLine("saved");
 			}

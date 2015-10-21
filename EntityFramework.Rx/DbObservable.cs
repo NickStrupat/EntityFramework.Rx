@@ -78,7 +78,7 @@ namespace EntityFramework.Rx {
 		private static Boolean IsTDbContext<TEntity>(IEntry<TEntity> entry) where TEntity : class, ITriggerable => entry.Context is TDbContext;
 
 		private static class CheckThat<TEntity> where TEntity : class, ITriggerable {
-			private static readonly Boolean DbContextContainsEntity = typeof(TDbContext).GetProperties(BindingFlags.Public | BindingFlags.Instance).Any(x => x.PropertyType == typeof(DbSet<>).MakeGenericType(typeof(TEntity)));
+			private static readonly Boolean DbContextContainsEntity = typeof(TDbContext).GetProperties(BindingFlags.Public | BindingFlags.Instance).Any(x => x.PropertyType == typeof(DbSet<TEntity>));
 
 			public static void IsUsedInTDbContext() {
 				if (!DbContextContainsEntity)

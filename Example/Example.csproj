@@ -41,7 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.Triggers, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.Triggers.5.3.1-prerelease\lib\net40\EntityFramework.Triggers.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.Triggers.5.3.1\lib\net40\EntityFramework.Triggers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

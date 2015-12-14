@@ -29,9 +29,9 @@ namespace Example {
 
 		private static void ObserveNewPeople() {
 			Console.WriteLine("thread");
-			//var a = DbObservable<Context>.FromInserted<Foo>();
 			var o = DbObservable<Context>.FromInserted<Person>();
-			using (var p = o.Where(x => x.Entity.DateOfBirth.Month == DateTime.Today.Month && x.Entity.DateOfBirth.Day == DateTime.Today.Day).Subscribe(entry => Console.WriteLine($"Happy birthday to {entry.Entity.Name}!"))) {
+			using (var p = o.Where(x => x.Entity.DateOfBirth.Month == DateTime.Today.Month && x.Entity.DateOfBirth.Day == DateTime.Today.Day)
+			                .Subscribe(entry => Console.WriteLine($"Happy birthday to {entry.Entity.Name}!"))) {
 				Thread.Sleep(5000);
 			}
 		}

@@ -1,0 +1,38 @@
+﻿{
+	"version": "1.0.0-*",
+	"title": "EntityFrameworkCore.Rx",
+	"description": "Reactive extension wrappers for hot observables of Entity Framework entities",
+	"authors": [ "Nick Strupat" ],
+	"packOptions": {
+		"tags": [ "rx", "reactive", "reactive-extensions", "entity-framework-core", "entityframeworkcore", "entity", "framework", "core", "triggers" ],
+		"projectUrl": "https://github.com/NickStrupat/EntityFramework.Rx",
+		"licenseUrl": "https://raw.githubusercontent.com/NickStrupat/EntityFramework.Rx/master/LICENSE"
+	},
+
+	"configurations": {
+		"Debug": {
+			"buildOptions": {
+				"define": [ "DEBUG", "TRACE", "EF_CORE" ]
+			}
+		},
+		"Release": {
+			"buildOptions": {
+				"define": [ "RELEASE", "TRACE", "EF_CORE" ],
+				"optimize": true
+			}
+		}
+	},
+
+	"dependencies": {
+		"Microsoft.EntityFrameworkCore": "1.0.1",
+		"EntityFrameworkCore.Triggers": "1.0.0",
+		"System.Reactive.Linq": "3.0.0"
+	},
+
+	"frameworks": {
+		"net451": {},
+		"netstandard1.3": {
+			"imports": "dnxcore50"
+		}
+	}
+}

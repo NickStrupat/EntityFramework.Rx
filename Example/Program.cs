@@ -41,15 +41,20 @@ namespace Example {
 		public virtual DbSet<Person> People { get; set; }
 	}
 
-	public class Person : ITriggerable {
+	public abstract class Trackable {
+		public DateTime Inserted { get; protected set; }
+		public DateTime Updated { get; protected set; }
+
+		static Trackable() {
+			Triggers<Trackable>.Inserting += e => e.Entity.Inserted = e.Entity.Updated = DateTime.UtcNow;
+			Triggers<Trackable>.Updating += e => e.Entity.Updated = DateTime.UtcNow;
+		}
+	}
+
+	public class Person : Trackable {
 		public Int64 Id { get; private set; }
 		public String Name { get; set; }
 		[DataType(DataType.Date)]
 		public DateTime DateOfBirth { get; set; }
-	}
-
-	public class Foo : ITriggerable {
-		public Int64 Id { get; private set; }
-		public String Bar { get; set; }
 	}
 }

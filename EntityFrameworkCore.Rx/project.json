@@ -1,5 +1,5 @@
-﻿{
-	"version": "1.0.0-*",
+{
+	"version": "1.0.1-*",
 	"title": "EntityFrameworkCore.Rx",
 	"description": "Reactive extension wrappers for hot observables of Entity Framework entities",
 	"authors": [ "Nick Strupat" ],
@@ -24,14 +24,19 @@
 	},
 
 	"dependencies": {
-		"Microsoft.EntityFrameworkCore": "1.0.1",
-		"EntityFrameworkCore.Triggers": "1.0.0",
-		"System.Reactive.Linq": "3.0.0"
+		"EntityFrameworkCore.Triggers": "1.0.5",
+		"System.Reactive": "3.1.1"
 	},
 
 	"frameworks": {
-		"net451": {},
+		"net451": {
+			"buildOptions": { "outputName": "EntityFrameworkCore.Rx.net451" }
+		},
 		"netstandard1.3": {
+			"buildOptions": { "outputName": "EntityFrameworkCore.Rx.netstandard1.3" },
+			"dependencies": {
+				"NETStandard.Library": "1.6.1"
+			},
 			"imports": "dnxcore50"
 		}
 	}

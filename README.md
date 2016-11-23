@@ -2,6 +2,8 @@
 
 Reactive extension wrappers for *hot* observables of Entity Framework entities.
 
+This repo contains the code for both the `EntityFramework` and `EntityFrameworkCore` projects.
+
 - FromInserting
 - FromInsertFailed
 - FromInserted
@@ -14,9 +16,12 @@ Reactive extension wrappers for *hot* observables of Entity Framework entities.
 
 ## Installation
 
-NuGet package listed on nuget.org at https://www.nuget.org/packages/EntityFramework.Rx/
+Simply install the NuGet package for EF6 or EF Core
 
-[![NuGet Status](http://img.shields.io/nuget/v/EntityFramework.Rx.svg?style=flat)](https://www.nuget.org/packages/EntityFramework.Rx/)
+| EF version | .NET support                          | NuGet package                                                                                                                                              |
+|:-----------|:--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 6.1.3      | == 4.0 &#124;&#124; >= 4.5            | [![NuGet Status](http://img.shields.io/nuget/v/EntityFramework.Rx.svg?style=flat)](https://www.nuget.org/packages/EntityFramework.Rx/)         |
+| Core 1.1   | >= 4.5.1 &#124;&#124; >= Standard 1.3 | [![NuGet Status](http://img.shields.io/nuget/v/EntityFrameworkCore.Rx.svg?style=flat)](https://www.nuget.org/packages/EntityFrameworkCore.Rx/) |
 
 ## Usage
 
@@ -34,10 +39,6 @@ var birthdayMessage = DbObservable<Context>.FromInserted<Person>()
 Specifying a DbContext type with `DbObservable<T>` will contrain events to entities in a DbContext instance of that type.
 
 Events provided by this library and the library which supports it ([EntityFramework.Triggers](https://github.com/NickStrupat/EntityFramework.Triggers)) are co-variant. You can use a base class as `T` in `DbObservable<T>` and the events will be raised as expected.
-
-## TODO
-
-- Handle calling a base class `Dispose` method in a way that makes sense (for now, don't combine this tool with other dispose patterns)
 
 ## Contributing
 

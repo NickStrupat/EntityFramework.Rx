@@ -36,7 +36,7 @@ var birthdayMessage = DbObservable<Context>.FromInserted<Person>()
 
 ### Remarks
 
-Specifying a DbContext type with `DbObservable<T>` will contrain events to entities in a DbContext instance of that type.
+Specifying a DbContext type with `DbObservable<T>` will constrain events to entities in a DbContext instance of that type.
 
 Events provided by this library and the library which supports it ([EntityFramework.Triggers](https://github.com/NickStrupat/EntityFramework.Triggers)) are co-variant. You can use a base class as `T` in `DbObservable<T>` and the events will be raised as expected.
 

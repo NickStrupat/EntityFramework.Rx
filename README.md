@@ -18,10 +18,15 @@ This repo contains the code for both the `EntityFramework` and `EntityFrameworkC
 
 Simply install the NuGet package for EF6 or EF Core
 
-| EF version | .NET support                          | NuGet package                                                                                                                                              |
-|:-----------|:--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 6.1.3      | == 4.0 &#124;&#124; >= 4.5            | [![NuGet Status](http://img.shields.io/nuget/v/EntityFramework.Rx.svg?style=flat)](https://www.nuget.org/packages/EntityFramework.Rx/)         |
-| Core 1.1   | >= 4.5.1 &#124;&#124; >= Standard 1.3 | [![NuGet Status](http://img.shields.io/nuget/v/EntityFrameworkCore.Rx.svg?style=flat)](https://www.nuget.org/packages/EntityFrameworkCore.Rx/) |
+#### Entity Framework 6.1.3
+`.NET 4.0+`
+
+[![NuGet Status](http://img.shields.io/nuget/v/EntityFramework.Rx.svg?style=flat)](https://www.nuget.org/packages/EntityFramework.Rx/)
+
+#### Entity Framework Core 1.1.1
+`.NET 4.5.1+` || `.NET Standard 1.3`
+
+[![NuGet Status](http://img.shields.io/nuget/v/EntityFrameworkCore.Rx.svg?style=flat)](https://www.nuget.org/packages/EntityFrameworkCore.Rx/)
 
 ## Usage
 

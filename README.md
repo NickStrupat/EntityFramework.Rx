@@ -4,6 +4,19 @@ Reactive extension wrappers for *hot* observables of Entity Framework entities.
 
 This repo contains the code for both the `EntityFramework` and `EntityFrameworkCore` projects.
 
+## Usage
+
+`DbObservable` contains methods for each event type supported, which return an IObservable.
+
+```csharp
+var birthdayMessage = DbObservable<Context>.FromInserted<Person>()
+                                           .Where(x => x.Entity.DateOfBirth.Month == DateTime.Today.Month
+                                                    && x.Entity.DateOfBirth.Day == DateTime.Today.Day)
+                                           .Subscribe(entry => Console.WriteLine($"Happy birthday to {entry.Entity.Name}!"));
+```
+
+### Supported observables
+
 - FromInserting
 - FromInsertFailed
 - FromInserted
@@ -27,17 +40,6 @@ Simply install the NuGet package for EF6 or EF Core
 `.NET 4.5.1+` || `.NET Standard 1.3`
 
 [![NuGet Status](http://img.shields.io/nuget/v/EntityFrameworkCore.Rx.svg?style=flat)](https://www.nuget.org/packages/EntityFrameworkCore.Rx/)
-
-## Usage
-
-`DbObservable` contains methods for each event type supported, which return an IObservable.
-
-```csharp
-var birthdayMessage = DbObservable<Context>.FromInserted<Person>()
-                                           .Where(x => x.Entity.DateOfBirth.Month == DateTime.Today.Month
-                                                    && x.Entity.DateOfBirth.Day == DateTime.Today.Day)
-                                           .Subscribe(entry => Console.WriteLine($"Happy birthday to {entry.Entity.Name}!"));
-```
 
 ### Remarks
 

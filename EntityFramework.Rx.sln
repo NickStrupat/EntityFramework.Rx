@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Rx", "EntityFramework.Rx\EntityFramework.Rx.csproj", "{0A7412AE-AAFA-4ECB-9EE4-1368BB11B182}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{EF8A6477-7353-4143-9221-EAEE091E3A16}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EntityFrameworkCore.Rx", "EntityFrameworkCore.Rx\EntityFrameworkCore.Rx.xproj", "{52EE83E8-FAA9-462D-9337-D7618E7583F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCore.Rx", "EntityFrameworkCore.Rx\EntityFrameworkCore.Rx.csproj", "{52EE83E8-FAA9-462D-9337-D7618E7583F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3CC057D7-E881-48C3-AD24-A8424A5F8BBA}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6FC4FCD-751C-4209-8CC6-F42596DE4CE8}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,90 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+	var triggerNames = new [] {
+		"Inserting",
+		"InsertFailed",
+		"Inserted",
+		"Deleting",
+		"DeleteFailed",
+		"Deleted",
+		"Updating",
+		"UpdateFailed",
+		"Updated"
+	};
+	var maxLength = triggerNames.Max(x => x.Length);
+#>
+using System;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+
+#if EF_CORE
+using EntityFrameworkCore.Triggers;
+using Microsoft.EntityFrameworkCore;
+namespace EntityFrameworkCore.Rx
+#else
+using System.Data.Entity;
+using EntityFramework.Triggers;
+namespace EntityFramework.Rx
+#endif
+{
+	public static class DbObservable
+	{
+<# foreach (var triggerName in triggerNames) { #>
+		public static IObservable<I<#= triggerName #>Entry<Object, DbContext>> From<#= triggerName #>() =>
+			DbObservable<Object>.From<#= triggerName #>();
+
+		public static IObservable<I<#= triggerName #>Entry<Object, DbContext>> From<#= triggerName #>(IScheduler scheduler) =>
+			DbObservable<Object>.From<#= triggerName #>();
+<# } #>
+	}
+
+	public static class DbObservable<TEntity>
+	where TEntity : class
+	{
+<# foreach (var triggerName in triggerNames) { #>
+		public static IObservable<I<#= triggerName #>Entry<TEntity, DbContext>> From<#= triggerName #>() =>
+			DbObservable<TEntity, DbContext>.From<#= triggerName #>();
+
+		public static IObservable<I<#= triggerName #>Entry<TEntity, DbContext>> From<#= triggerName #>(IScheduler scheduler) =>
+			DbObservable<TEntity, DbContext>.From<#= triggerName #>();
+<# } #>
+	}
+
+	public static class DbObservable<TEntity, TDbContext>
+	where TEntity : class
+	where TDbContext : DbContext
+	{
+<# foreach (var triggerName in triggerNames) { #>
+		public static IObservable<I<#= triggerName #>Entry<TEntity, TDbContext>> From<#= triggerName #>() =>
+			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, TDbContext>>(
+				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Add,
+				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Remove
+			);
+
+		public static IObservable<I<#= triggerName #>Entry<TEntity, TDbContext>> From<#= triggerName #>(IScheduler scheduler) =>
+			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, TDbContext>>(
+				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Add,
+				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Remove,
+				scheduler
+			);
+
+		public static IObservable<I<#= triggerName #>Entry<TEntity, DbContext, TService>> From<#= triggerName #><TService>() =>
+			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, DbContext, TService>>(
+				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Add,
+				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Remove
+			);
+
+		public static IObservable<I<#= triggerName #>Entry<TEntity, DbContext, TService>> From<#= triggerName #><TService>(IScheduler scheduler) =>
+			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, DbContext, TService>>(
+				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Add,
+				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Remove,
+				scheduler
+			);
+<# } #>
+	}
+}

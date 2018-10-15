@@ -24,6 +24,8 @@ namespace Example {
 				container.Register<Foo>(Lifestyle.Transient);
 				container.Register(typeof(ITriggers<,>), typeof(Triggers<,>), Lifestyle.Singleton);
 				container.Register(typeof(IDbObservable<,>), typeof(DbObservable<,>), Lifestyle.Singleton);
+				container.Register(typeof(IDbObservable<>), typeof(DbObservable<>), Lifestyle.Singleton);
+				container.Register(typeof(IDbObservable), typeof(DbObservable), Lifestyle.Singleton);
 
 				var observerThread = new Thread(() => ObserveNewPeople(container));
 				observerThread.Start();
@@ -39,12 +41,13 @@ namespace Example {
 
 				manualResetEventSlim.Set();
 				observerThread.Join();
+				Console.WriteLine(Foo.instanceCount);
 			}
 		}
 
 		private static void ObserveNewPeople(IServiceProvider serviceProvider) {
 			Console.WriteLine("thread");
-			var dbObservable = serviceProvider.GetRequiredService<IDbObservable<Person, Context>>();
+			var dbObservable = serviceProvider.GetRequiredService<IDbObservable<Person>>();
 			var o = dbObservable.FromInserted<Foo>();
 			using (var p = o.Where(x => x.Entity.DateOfBirth.Month == DateTime.Today.Month && x.Entity.DateOfBirth.Day == DateTime.Today.Day)
 			                .Subscribe(x => Console.WriteLine($"Happy birthday to {x.Entity.Name}!")))
@@ -56,7 +59,7 @@ namespace Example {
 
 	public class Foo
 	{
-		private static Int32 instanceCount;
+		internal static Int32 instanceCount;
 		public readonly Int32 Count;
 		public Foo() => Count = instanceCount++;
 	}

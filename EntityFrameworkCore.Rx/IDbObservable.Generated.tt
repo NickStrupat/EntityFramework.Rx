@@ -37,6 +37,8 @@ namespace EntityFramework.Rx
 <# foreach (var trigger in triggers) { #>
 		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><Object, DbContext>> From<#= trigger.Name #>();
 		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><Object, DbContext>> From<#= trigger.Name #>(IScheduler scheduler);
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><Object, DbContext, TService>> From<#= trigger.Name #><TService>();
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><Object, DbContext, TService>> From<#= trigger.Name #><TService>(IScheduler scheduler);
 <# } #>
 	}
 
@@ -46,6 +48,8 @@ namespace EntityFramework.Rx
 <# foreach (var trigger in triggers) { #>
 		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext>> From<#= trigger.Name #>();
 		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext>> From<#= trigger.Name #>(IScheduler scheduler);
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext, TService>> From<#= trigger.Name #><TService>();
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext, TService>> From<#= trigger.Name #><TService>(IScheduler scheduler);
 <# } #>
 	}
 
@@ -56,8 +60,8 @@ namespace EntityFramework.Rx
 <# foreach (var trigger in triggers) { #>
 		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, TDbContext>> From<#= trigger.Name #>();
 		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, TDbContext>> From<#= trigger.Name #>(IScheduler scheduler);
-		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext, TService>> From<#= trigger.Name #><TService>();
-		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext, TService>> From<#= trigger.Name #><TService>(IScheduler scheduler);
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, TDbContext, TService>> From<#= trigger.Name #><TService>();
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, TDbContext, TService>> From<#= trigger.Name #><TService>(IScheduler scheduler);
 <# } #>
 	}
 }

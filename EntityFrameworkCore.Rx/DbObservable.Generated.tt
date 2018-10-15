@@ -35,18 +35,26 @@ namespace EntityFramework.Rx
 	public sealed class DbObservable
 	: IDbObservable
 	{
-		private readonly ITriggers<Object, DbContext> triggers;
-		public DbObservable(ITriggers<Object, DbContext> triggers) => this.triggers = triggers;
+		private readonly IDbObservable<Object, DbContext> dbObservable;
+		public DbObservable(IDbObservable<Object, DbContext> dbObservable) => this.dbObservable = dbObservable;
 <# foreach (var triggerName in triggerNames) { #>
 		public static IObservable<I<#= triggerName #>Entry<Object, DbContext>> From<#= triggerName #>() =>
-			DbObservable<Object>.From<#= triggerName #>();
+			DbObservable<Object, DbContext>.From<#= triggerName #>();
 		public static IObservable<I<#= triggerName #>Entry<Object, DbContext>> From<#= triggerName #>(IScheduler scheduler) =>
-			DbObservable<Object>.From<#= triggerName #>();
+			DbObservable<Object, DbContext>.From<#= triggerName #>();
+		public static IObservable<I<#= triggerName #>Entry<Object, DbContext, TService>> From<#= triggerName #><TService>() =>
+			DbObservable<Object, DbContext>.From<#= triggerName #><TService>();
+		public static IObservable<I<#= triggerName #>Entry<Object, DbContext, TService>> From<#= triggerName #><TService>(IScheduler scheduler) =>
+			DbObservable<Object, DbContext>.From<#= triggerName #><TService>();
 
 		IObservable<I<#= triggerName #>Entry<Object, DbContext>> IDbObservable.From<#= triggerName #>() =>
-			DbObservable<Object>.From<#= triggerName #>();
+			dbObservable.From<#= triggerName #>();
 		IObservable<I<#= triggerName #>Entry<Object, DbContext>> IDbObservable.From<#= triggerName #>(IScheduler scheduler) =>
-			DbObservable<Object>.From<#= triggerName #>();
+			dbObservable.From<#= triggerName #>();
+		IObservable<I<#= triggerName #>Entry<Object, DbContext, TService>> IDbObservable.From<#= triggerName #><TService>() =>
+			dbObservable.From<#= triggerName #><TService>();
+		IObservable<I<#= triggerName #>Entry<Object, DbContext, TService>> IDbObservable.From<#= triggerName #><TService>(IScheduler scheduler) =>
+			dbObservable.From<#= triggerName #><TService>();
 <# } #>
 	}
 
@@ -54,18 +62,26 @@ namespace EntityFramework.Rx
 	: IDbObservable<TEntity>
 	where TEntity : class
 	{
-		private readonly ITriggers<TEntity, DbContext> triggers;
-		public DbObservable(ITriggers<TEntity, DbContext> triggers) => this.triggers = triggers;
+		private readonly IDbObservable<TEntity, DbContext> dbObservable;
+		public DbObservable(IDbObservable<TEntity, DbContext> dbObservable) => this.dbObservable = dbObservable;
 <# foreach (var triggerName in triggerNames) { #>
 		public static IObservable<I<#= triggerName #>Entry<TEntity, DbContext>> From<#= triggerName #>() =>
 			DbObservable<TEntity, DbContext>.From<#= triggerName #>();
 		public static IObservable<I<#= triggerName #>Entry<TEntity, DbContext>> From<#= triggerName #>(IScheduler scheduler) =>
 			DbObservable<TEntity, DbContext>.From<#= triggerName #>();
+		public static IObservable<I<#= triggerName #>Entry<TEntity, DbContext, TService>> From<#= triggerName #><TService>() =>
+			DbObservable<TEntity, DbContext>.From<#= triggerName #><TService>();
+		public static IObservable<I<#= triggerName #>Entry<TEntity, DbContext, TService>> From<#= triggerName #><TService>(IScheduler scheduler) =>
+			DbObservable<TEntity, DbContext>.From<#= triggerName #><TService>();
 
 		IObservable<I<#= triggerName #>Entry<TEntity, DbContext>> IDbObservable<TEntity>.From<#= triggerName #>() =>
-			DbObservable<TEntity, DbContext>.From<#= triggerName #>();
+			dbObservable.From<#= triggerName #>();
 		IObservable<I<#= triggerName #>Entry<TEntity, DbContext>> IDbObservable<TEntity>.From<#= triggerName #>(IScheduler scheduler) =>
-			DbObservable<TEntity, DbContext>.From<#= triggerName #>();
+			dbObservable.From<#= triggerName #>();
+		IObservable<I<#= triggerName #>Entry<TEntity, DbContext, TService>> IDbObservable<TEntity>.From<#= triggerName #><TService>() =>
+			dbObservable.From<#= triggerName #><TService>();
+		IObservable<I<#= triggerName #>Entry<TEntity, DbContext, TService>> IDbObservable<TEntity>.From<#= triggerName #><TService>(IScheduler scheduler) =>
+			dbObservable.From<#= triggerName #><TService>();
 <# } #>
 	}
 
@@ -102,24 +118,24 @@ namespace EntityFramework.Rx
 
 		IObservable<I<#= triggerName #>Entry<TEntity, TDbContext>> IDbObservable<TEntity, TDbContext>.From<#= triggerName #>() =>
 			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, TDbContext>>(
-				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Add,
-				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Remove
+				triggers.<#= triggerName #>.Add,
+				triggers.<#= triggerName #>.Remove
 			);
 		IObservable<I<#= triggerName #>Entry<TEntity, TDbContext>> IDbObservable<TEntity, TDbContext>.From<#= triggerName #>(IScheduler scheduler) =>
 			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, TDbContext>>(
-				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Add,
-				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Remove,
+				triggers.<#= triggerName #>.Add,
+				triggers.<#= triggerName #>.Remove,
 				scheduler
 			);
-		IObservable<I<#= triggerName #>Entry<TEntity, DbContext, TService>> IDbObservable<TEntity, TDbContext>.From<#= triggerName #><TService>() =>
-			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, DbContext, TService>>(
-				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Add,
-				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Remove
+		IObservable<I<#= triggerName #>Entry<TEntity, TDbContext, TService>> IDbObservable<TEntity, TDbContext>.From<#= triggerName #><TService>() =>
+			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, TDbContext, TService>>(
+				triggers.<#= triggerName #>.Add,
+				triggers.<#= triggerName #>.Remove
 			);
-		IObservable<I<#= triggerName #>Entry<TEntity, DbContext, TService>> IDbObservable<TEntity, TDbContext>.From<#= triggerName #><TService>(IScheduler scheduler) =>
-			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, DbContext, TService>>(
-				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Add,
-				Triggers<TEntity, TDbContext>.Global<#= triggerName #>.Remove,
+		IObservable<I<#= triggerName #>Entry<TEntity, TDbContext, TService>> IDbObservable<TEntity, TDbContext>.From<#= triggerName #><TService>(IScheduler scheduler) =>
+			Observable.FromEvent<I<#= triggerName #>Entry<TEntity, TDbContext, TService>>(
+				triggers.<#= triggerName #>.Add,
+				triggers.<#= triggerName #>.Remove,
 				scheduler
 			);
 <# } #>

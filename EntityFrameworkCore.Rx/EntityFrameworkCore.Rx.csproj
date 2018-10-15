@@ -31,6 +31,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DbObservable.Generated.tt</DependentUpon>
     </None>
+    <None Include="IDbObservable.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IDbObservable.Generated.tt</DependentUpon>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +48,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DbObservable.Generated.cs</LastGenOutput>
     </None>
+    <None Update="IDbObservable.Generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IDbObservable.Generated.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DbObservable.Generated.tt</DependentUpon>
+    </Compile>
+    <Compile Update="IDbObservable.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IDbObservable.Generated.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

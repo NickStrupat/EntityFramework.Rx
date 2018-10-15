@@ -1,0 +1,63 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+	var triggerNames = new [] {
+		"Inserting",
+		"InsertFailed",
+		"Inserted",
+		"Deleting",
+		"DeleteFailed",
+		"Deleted",
+		"Updating",
+		"UpdateFailed",
+		"Updated"
+	};
+	var maxLength = triggerNames.Max(x => x.Length);
+	var triggers = triggerNames.Select(x => (Name:x, Padding:new String(' ', maxLength - x.Length)));
+#>
+using System;
+using System.Reactive.Concurrency;
+
+#if EF_CORE
+using EntityFrameworkCore.Triggers;
+using Microsoft.EntityFrameworkCore;
+namespace EntityFrameworkCore.Rx
+#else
+using System.Data.Entity;
+using EntityFramework.Triggers;
+namespace EntityFramework.Rx
+#endif
+{
+	public interface IDbObservable
+	{
+<# foreach (var trigger in triggers) { #>
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><Object, DbContext>> From<#= trigger.Name #>();
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><Object, DbContext>> From<#= trigger.Name #>(IScheduler scheduler);
+<# } #>
+	}
+
+	public interface IDbObservable<TEntity>
+	where TEntity : class
+	{
+<# foreach (var trigger in triggers) { #>
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext>> From<#= trigger.Name #>();
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext>> From<#= trigger.Name #>(IScheduler scheduler);
+<# } #>
+	}
+
+	public interface IDbObservable<TEntity, TDbContext>
+	where TEntity : class
+	where TDbContext : DbContext
+	{
+<# foreach (var trigger in triggers) { #>
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, TDbContext>> From<#= trigger.Name #>();
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, TDbContext>> From<#= trigger.Name #>(IScheduler scheduler);
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext, TService>> From<#= trigger.Name #><TService>();
+		IObservable<I<#= trigger.Name #>Entry<#= trigger.Padding #><TEntity, DbContext, TService>> From<#= trigger.Name #><TService>(IScheduler scheduler);
+<# } #>
+	}
+}

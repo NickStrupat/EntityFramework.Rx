@@ -17,14 +17,17 @@ namespace Example {
 	{
 		private static readonly ManualResetEventSlim manualResetEventSlim = new ManualResetEventSlim(false);
 		static void Main(String[] args) {
-			var observerThread = new Thread(ObserveNewPeople);
-			observerThread.Start();
-			Thread.Sleep(100);
 			using (var container = new Container())
 			{
 				container.Register<IServiceProvider>(() => container, Lifestyle.Singleton);
 				container.Register<Context>(Lifestyle.Transient);
 				container.Register<Foo>(Lifestyle.Transient);
+				container.Register(typeof(ITriggers<,>), typeof(Triggers<,>), Lifestyle.Singleton);
+				container.Register(typeof(IDbObservable<,>), typeof(DbObservable<,>), Lifestyle.Singleton);
+
+				var observerThread = new Thread(() => ObserveNewPeople(container));
+				observerThread.Start();
+				Thread.Sleep(100);
 
 				var context = container.GetService<Context>();
 				Console.WriteLine("context");
@@ -33,14 +36,16 @@ namespace Example {
 				context.People.Add(new Person { Name = "Joe", DateOfBirth = DateTime.Today });
 				context.SaveChanges();
 				Console.WriteLine("saved");
+
+				manualResetEventSlim.Set();
+				observerThread.Join();
 			}
-			manualResetEventSlim.Set();
-			observerThread.Join();
 		}
 
-		private static void ObserveNewPeople() {
+		private static void ObserveNewPeople(IServiceProvider serviceProvider) {
 			Console.WriteLine("thread");
-			var o = DbObservable<Person, Context>.FromInserted<Foo>();
+			var dbObservable = serviceProvider.GetRequiredService<IDbObservable<Person, Context>>();
+			var o = dbObservable.FromInserted<Foo>();
 			using (var p = o.Where(x => x.Entity.DateOfBirth.Month == DateTime.Today.Month && x.Entity.DateOfBirth.Day == DateTime.Today.Day)
 			                .Subscribe(x => Console.WriteLine($"Happy birthday to {x.Entity.Name}!")))
 			{

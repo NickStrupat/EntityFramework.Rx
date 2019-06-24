@@ -48,7 +48,7 @@ namespace Example {
 		private static void ObserveNewPeople(IServiceProvider serviceProvider) {
 			Console.WriteLine("thread");
 			var dbObservable = serviceProvider.GetRequiredService<IDbObservable<Person>>();
-			var o = dbObservable.FromInserted<Foo>();
+			var o = dbObservable.FromInserted<Foo>().AsQbservable();
 			using (var p = o.Where(x => x.Entity.DateOfBirth.Month == DateTime.Today.Month && x.Entity.DateOfBirth.Day == DateTime.Today.Day)
 			                .Subscribe(x => Console.WriteLine($"Happy birthday to {x.Entity.Name}!")))
 			{
@@ -65,8 +65,8 @@ namespace Example {
 	}
 
 	public class Context : DbContextWithTriggers {
-		public Context(IServiceProvider serviceProvider) : base(serviceProvider) {}
-
+		public Context(IServiceProvider serviceProvider) : base(serviceProvider, $@"Server=(localdb)\mssqllocaldb;Database={typeof(Context).FullName};Trusted_Connection=True;") {}
+		
 		public virtual DbSet<Person> People { get; set; }
 	}
 

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <Description>EntityFramework.Rx integration library for ASP.NET Core</Description>
+    <Authors>Nick Strupat</Authors>
+    <PackageTags>rx;reactive;reactive-extensions;entity-framework;entityframework;entity;framework;triggers</PackageTags>
+    <PackageProjectUrl>https://github.com/NickStrupat/EntityFramework.Rx</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/NickStrupat/EntityFramework.Rx/master/LICENSE</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <PackageId>NickStrupat.EntityFramework.Rx.AspNetCore</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\EntityFrameworkCore.Rx.AspNetCore\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework.Rx" Version="2.0.0-beta2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
+    <PackageReference Include="NickStrupat.EntityFramework.Triggers.AspNetCore" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

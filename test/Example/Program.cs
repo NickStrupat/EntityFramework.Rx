@@ -22,10 +22,11 @@ namespace Example {
 				container.Register<IServiceProvider>(() => container, Lifestyle.Singleton);
 				container.Register<Context>(Lifestyle.Transient);
 				container.Register<Foo>(Lifestyle.Transient);
-				container.Register(typeof(ITriggers<,>), typeof(Triggers<,>), Lifestyle.Singleton);
-				container.Register(typeof(IDbObservable<,>), typeof(DbObservable<,>), Lifestyle.Singleton);
-				container.Register(typeof(IDbObservable<>), typeof(DbObservable<>), Lifestyle.Singleton);
-				container.Register(typeof(IDbObservable), typeof(DbObservable), Lifestyle.Singleton);
+				container.AddDbObservables(x => x.Container.Register(x.ServiceType, x.ImplementationType, Lifestyle.Singleton));
+				//container.Register(typeof(ITriggers<,>), typeof(Triggers<,>), Lifestyle.Singleton);
+				//container.Register(typeof(IDbObservable<,>), typeof(DbObservable<,>), Lifestyle.Singleton);
+				//container.Register(typeof(IDbObservable<>), typeof(DbObservable<>), Lifestyle.Singleton);
+				//container.Register(typeof(IDbObservable), typeof(DbObservable), Lifestyle.Singleton);
 
 				var observerThread = new Thread(() => ObserveNewPeople(container));
 				observerThread.Start();

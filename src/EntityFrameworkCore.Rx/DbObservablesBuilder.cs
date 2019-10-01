@@ -2,13 +2,13 @@
 using Microsoft.Extensions.DependencyInjection;
 #if EF_CORE
 using Microsoft.EntityFrameworkCore;
-namespace EntityFrameworkCore.Rx.AspNetCore
+namespace EntityFrameworkCore.Rx
 #else
 using System.Data.Entity;
-namespace EntityFramework.Rx.AspNetCore
+namespace EntityFramework.Rx
 #endif
 {
-	internal class DbObservablesBuilder : IDbObservablesBuilder
+	internal sealed class DbObservablesBuilder : IDbObservablesBuilder
 	{
 		private readonly IServiceProvider serviceProvider;
 

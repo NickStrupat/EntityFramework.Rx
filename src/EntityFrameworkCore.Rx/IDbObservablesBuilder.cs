@@ -1,9 +1,9 @@
 ﻿#if EF_CORE
 using Microsoft.EntityFrameworkCore;
-namespace EntityFrameworkCore.Rx.AspNetCore
+namespace EntityFrameworkCore.Rx
 #else
 using System.Data.Entity;
-namespace EntityFramework.Rx.AspNetCore
+namespace EntityFramework.Rx
 #endif
 {
 	public interface IDbObservablesBuilder

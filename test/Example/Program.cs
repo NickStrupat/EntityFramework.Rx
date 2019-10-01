@@ -22,7 +22,12 @@ namespace Example {
 				container.Register<IServiceProvider>(() => container, Lifestyle.Singleton);
 				container.Register<Context>(Lifestyle.Transient);
 				container.Register<Foo>(Lifestyle.Transient);
-				container.AddDbObservables(x => x.Container.Register(x.ServiceType, x.ImplementationType, Lifestyle.Singleton));
+				var services = new ServiceCollection();
+				services.AddTriggers();
+				services.AddDbObservables();
+				services
+					.BuildServiceProvider(validateScopes: true)
+					.UseSimpleInjector(container);
 				//container.Register(typeof(ITriggers<,>), typeof(Triggers<,>), Lifestyle.Singleton);
 				//container.Register(typeof(IDbObservable<,>), typeof(DbObservable<,>), Lifestyle.Singleton);
 				//container.Register(typeof(IDbObservable<>), typeof(DbObservable<>), Lifestyle.Singleton);

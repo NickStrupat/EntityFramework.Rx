@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461;netstandard2.1</TargetFramework>
+    <TargetFrameworks>net461;netstandard2.1</TargetFrameworks>
     <Description>Reactive extension wrappers for hot observables of Entity Framework entities</Description>
     <Authors>Nick Strupat</Authors>
     <PackageId>EntityFramework.Rx</PackageId>
     <PackageTags>rx;reactive;reactive-extensions;entity-framework;entityframework;entity;framework;triggers</PackageTags>
     <PackageProjectUrl>https://github.com/NickStrupat/EntityFramework.Rx</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/NickStrupat/EntityFramework.Rx/master/LICENSE</PackageLicenseUrl>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

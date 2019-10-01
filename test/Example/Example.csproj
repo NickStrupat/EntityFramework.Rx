@@ -10,8 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework.Triggers" Version="6.2.0" />
+    <PackageReference Include="EntityFramework.Triggers" Version="6.2.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
     <PackageReference Include="SimpleInjector" Version="4.6.0" />
+    <PackageReference Include="SimpleInjector.Integration.ServiceCollection" Version="4.6.0" />
     <PackageReference Include="System.Reactive" Version="4.1.5" />
   </ItemGroup>
 

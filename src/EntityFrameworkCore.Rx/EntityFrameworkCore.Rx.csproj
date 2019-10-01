@@ -8,7 +8,7 @@
     <PackageTags>rx;reactive;reactive-extensions;entity-framework-core;entityframeworkcore;entity;framework;core;triggers</PackageTags>
     <PackageProjectUrl>https://github.com/NickStrupat/EntityFramework.Rx</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/NickStrupat/EntityFramework.Rx/master/LICENSE</PackageLicenseUrl>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

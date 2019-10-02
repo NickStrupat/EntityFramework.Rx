@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard2.1</TargetFrameworks>
+	  <Description>EntityFramework.Rx integration library for .NET Core Service Workers</Description>
+	  <Authors>Nick Strupat</Authors>
+	  <PackageTags>rx;reactive;reactive-extensions;entity-framework;entityframework;entity;framework;triggers</PackageTags>
+	  <PackageProjectUrl>https://github.com/NickStrupat/EntityFramework.Rx</PackageProjectUrl>
+	  <PackageLicenseUrl>https://raw.githubusercontent.com/NickStrupat/EntityFramework.Rx/master/LICENSE</PackageLicenseUrl>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <Version>1.0.0</Version>
+	  <PackageId>NickStrupat.EntityFramework.Rx.Hosting</PackageId>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\EntityFrameworkCore.Rx.Hosting\*.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="EntityFramework.Rx" Version="2.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0" />
+	</ItemGroup>
+
+</Project>

@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework.Rx" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="NickStrupat.EntityFramework.Triggers.AspNetCore" Version="1.0.1" />
   </ItemGroup>
 

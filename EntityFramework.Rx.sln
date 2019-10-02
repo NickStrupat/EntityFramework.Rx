@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29319.158
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3CC057D7-E881-48C3-AD24-A8424A5F8BBA}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,15 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EE3F247B-B65
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{03847D7E-4E13-482C-A122-C5BD5AF43732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Rx", "src\EntityFrameworkCore.Rx\EntityFrameworkCore.Rx.csproj", "{054423BE-3044-42D9-B60B-C33AAA85D256}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCore.Rx", "src\EntityFrameworkCore.Rx\EntityFrameworkCore.Rx.csproj", "{054423BE-3044-42D9-B60B-C33AAA85D256}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Rx", "src\EntityFramework.Rx\EntityFramework.Rx.csproj", "{E5789D82-E67A-469E-8AF1-7B7DAC66F825}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFramework.Rx", "src\EntityFramework.Rx\EntityFramework.Rx.csproj", "{E5789D82-E67A-469E-8AF1-7B7DAC66F825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "test\Example\Example.csproj", "{930570BA-3E35-4582-9AEB-995D54004E45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "test\Example\Example.csproj", "{930570BA-3E35-4582-9AEB-995D54004E45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Rx.AspNetCore", "src\EntityFramework.Rx.AspNetCore\EntityFramework.Rx.AspNetCore.csproj", "{7139F2F4-DD5B-42D3-B1DD-9A2BE1D88F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFramework.Rx.AspNetCore", "src\EntityFramework.Rx.AspNetCore\EntityFramework.Rx.AspNetCore.csproj", "{7139F2F4-DD5B-42D3-B1DD-9A2BE1D88F8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Rx.AspNetCore", "src\EntityFrameworkCore.Rx.AspNetCore\EntityFrameworkCore.Rx.AspNetCore.csproj", "{3C8E8036-BF45-499A-9122-CDFA50E2FBDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCore.Rx.AspNetCore", "src\EntityFrameworkCore.Rx.AspNetCore\EntityFrameworkCore.Rx.AspNetCore.csproj", "{3C8E8036-BF45-499A-9122-CDFA50E2FBDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Rx.Hosting", "src\EntityFramework.Rx.Hosting\EntityFramework.Rx.Hosting.csproj", "{80836355-208B-4C16-A5AA-C9BCC3A4AD28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Rx.Hosting", "src\EntityFrameworkCore.Rx.Hosting\EntityFrameworkCore.Rx.Hosting.csproj", "{68B1827C-1E8A-4BAC-BA83-37A351AE52B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,14 @@ Global
 		{3C8E8036-BF45-499A-9122-CDFA50E2FBDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C8E8036-BF45-499A-9122-CDFA50E2FBDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C8E8036-BF45-499A-9122-CDFA50E2FBDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80836355-208B-4C16-A5AA-C9BCC3A4AD28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80836355-208B-4C16-A5AA-C9BCC3A4AD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80836355-208B-4C16-A5AA-C9BCC3A4AD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80836355-208B-4C16-A5AA-C9BCC3A4AD28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B1827C-1E8A-4BAC-BA83-37A351AE52B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B1827C-1E8A-4BAC-BA83-37A351AE52B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B1827C-1E8A-4BAC-BA83-37A351AE52B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B1827C-1E8A-4BAC-BA83-37A351AE52B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +71,8 @@ Global
 		{930570BA-3E35-4582-9AEB-995D54004E45} = {03847D7E-4E13-482C-A122-C5BD5AF43732}
 		{7139F2F4-DD5B-42D3-B1DD-9A2BE1D88F8E} = {EE3F247B-B65E-4B20-972E-3F77483E4BF6}
 		{3C8E8036-BF45-499A-9122-CDFA50E2FBDD} = {EE3F247B-B65E-4B20-972E-3F77483E4BF6}
+		{80836355-208B-4C16-A5AA-C9BCC3A4AD28} = {EE3F247B-B65E-4B20-972E-3F77483E4BF6}
+		{68B1827C-1E8A-4BAC-BA83-37A351AE52B6} = {EE3F247B-B65E-4B20-972E-3F77483E4BF6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6FC4FCD-751C-4209-8CC6-F42596DE4CE8}
